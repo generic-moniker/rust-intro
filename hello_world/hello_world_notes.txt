@@ -1,0 +1,12 @@
+Hello World Notes:
+
+- Rust's 'main' function is special. It is the first code that runs in every executable rust program
+- Rust has a formatting tool in development called rustfmt
+- Rust style is to indent w 4 spaces as opposed to tabs
+- println! calls a Rust macro. The exclamation denotes that it is a macro as opposed to println which is just a function. Macros will be discussed more later.
+- Rust uses semicolons to denote end of lines
+
+- Compiling and running are separate steps just like in C/C++. rustc is the compiler
+- Usually this outputs a an executable file from the original .rs file. On windows, a .pdb file is generated with some extra debugging information.
+- Rust is an ahead of time compiled language, so you can run its executables without having rust installed, as opposed to dynamic languages like Ruby, Python, Javascript
+- But then the disadvantage is that compilation takes multiple steps. Tradeoffs...
