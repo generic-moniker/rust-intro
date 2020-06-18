@@ -1,0 +1,20 @@
+- Cargo is Rust's build system and package manager
+- Cargo helps handle building code, downloading dependency libraries, and building those libraries.
+- `cargo new hello_cargo` creates a new cargo project
+- Generates two files, a Cargo.toml and a src directory with a main.rs file inside
+- Will also initialize a new git repository, but not if run inside an existing git repository
+- TOML stands for Tom's Obvious, Minimal Language, and is Cargo's configuration format
+- In Rust, packages of code are referred to as crates
+- Cargo expects your source files to live in the src directory
+- The top level of the project should be reserved for README files and the like
+- Convert non Cargo projects like the one in unit 1.1 by moving source code to a src directory and creating an appropriate Cargo.toml file
+- Build a project with `cargo build`
+- This creates an executable in a file called /target/debug/hello_cargo (exe on Windows)
+- Cargo.lock is also generated and manages dependencies
+- `cargo run` will compile the code and run the executable in a single command
+- `cargo check` will see if your code compiles but won't produce an executable. Its faster to run.
+- Cargo is universal across different OSes too, so no need to really distinguish when instructions are given via cargo
+- `cargo build --release` helps you build a release ready executable that is compiled with optimizations. Your code will run faster but take longer to compile.
+- This outputs to the target/release folder. If you want to benchmark your code, run the release version of it.
+- When the project is simple, cargo doesn't provide much value over rustc, but will become more useful as projects become more intricate.
+- Cargo has documentation here: https://doc.rust-lang.org/cargo/
