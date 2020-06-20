@@ -1,0 +1,30 @@
+Programming a Guessing Game Notes:
+
+- Topics covered: let, match, methods, associated functions, using external crates
+- Implementing a guessing game, a typical beginner programming problem
+- The program will generate a random number integer between 1 and 100, and will then prompt the player to enter in a guess, then will tell the player if the guess is too low or too high. If the guess is right, the program will print a congratulatory message and exit.
+- For the first segment of the program, we will ask for user input, process the input, and check that the input is in the expected form.
+- To obtain user input and then print the result as output, we  need to bring the io (input/output) library into scope. The io library comes from the standard library (known as std):
+
+- use std::io acts as an import statement
+- Rust only brings a few types into the scope of a program as part of the prelude (basically a list of stuff that's initially imported into Rust that you will probably use a lot)
+- Import stuff not in the prelude with a use statement
+- fn declares a new function, parenthesis are where parameters could go, and the curly brace { signals the start of the function.
+- Again, println! is a macro
+- let mut guess = String::new() is storing user input
+- 'let' creates variables
+- In Rust, variables are immutable by default
+- 'mut' makes the variable mutable
+- String::new() provides a new instance of a string objects
+- Strings in Rust: a growable utf-8 encoded bit of text, a type provided by the standard library
+- The :: syntax in ::new indicates that 'new' is an associated function of the string type
+- An associated function is implemented on a type rather than an instance of a type. In other languages this is referred to as a static method.
+- `io::stdin`: If we hadn't imported using `use std::io;`, we could have referred to what we needed as `std::io::stdin.
+- `stdin` function returns an instance of `std::io::Stdin`, which is a type that represents a handle to the standard input for your terminal 
+- `.read_line(&mut_guess)` calls the `read_line` method on the standard input handle to get input from the user. We're also passing in `&mut guess` to `read_line`.
+- The job of `read_line is to take whatever the user types into the standard input and put it into a string so that it can take the string as an argument
+- The string has to be mutable for read_line to modify its contents
+- & indicates that the argument is a reference, which lets you have a way so that multiple parts of your code can access one piece of data without needing to copy that data into memory multiple times
+- References are pretty safe in rust
+- References are immutable by default, so you have to write `&mut guess` rather than `guess` to make it mutable
+- While you don't really know what it means for a reference to be mutable or unmutable, chapter 4 of the tutorial will explain references in more detail
