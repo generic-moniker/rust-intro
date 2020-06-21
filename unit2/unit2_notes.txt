@@ -28,3 +28,54 @@ Programming a Guessing Game Notes:
 - References are pretty safe in rust
 - References are immutable by default, so you have to write `&mut guess` rather than `guess` to make it mutable
 - While you don't really know what it means for a reference to be mutable or unmutable, chapter 4 of the tutorial will explain references in more detail
+- `.expect("Failed to read line")` is put on a new line because its typically good practice to break up long lines
+- `read_line` also returns a value on top of reading user input. In this case, its an `io::Result` type value 
+-  Rust has many `Result` types in its library. One is a generic type, and then there are various types for different submodules, like `io::Result`
+- `Result` types are enumerations, commonly referred to as enums. An enum is a type that can have a fixed set of values, and those are referred to as the enum's variants.
+- For `Result`, the variants are Ok and Err. Ok indicates success and contains the generated value, whereas Err indicates failure and indicates why the operation failed 
+- The purpose of `Result` type values is to encode error handling information. Values of `Result` like with other types have methods defined on them. 
+- An instance of io::Result has an expect method defined on it, and if the Result indicates failure then the expect method will cause the program to crash and display the error message passed into it as an argument. The expect method just returns the value retrieved if it gets back Ok. The value returned in this case is the number of bytes in what the user passed in to read_line
+- If you don't call expect the program still compiles but you'll get a warning.
+- Usually to suppress warnings you want to implement error handling
+- `println("You guessed {}", guess);`
+- The curly brackets here are a placeholder
+- Think of it as pincers holding a value in place
+- The first placeholder prints the first value passed in, the second prints the second, and so on
+- You can use `cargo run` to test the code up to this point
+- To help generate a random secret number, bring in the `rand` crate
+- A crate is a collection of Rust source code files
+- Modify Cargo.toml to bring it in
+- `rand = "0.5.5"`
+- Cargo understands semantic versioning: 0.5.5 is actually shorthand for ^0.5.5, which means "any version that has a public API compatible with version 0.5.5"
+- Cargo build after including this downloads the dependency
+- Cargo fetches the latest versions of everything from the registry, which is a copy of data from Crates.io. 
+- Crates.io is where people in the Rust ecosystem post their open source Rust projects for others to use
+- After updating the registry, Cargo checks the dependencies section and downloads crates you don't have yet. After downloading them, Rust compiles them and recompiles the project with the dependencies available. 
+- Cargo only rebuilds what changed, it won't try to redownload the dependencies again after this because it already knows it downloaded it
+- Cargo.lock exists to ensure we rebuild the same artifact every time and don't download updates that are not requested that could break code
+- Cargo.lock is created and updated when you build and dependencies are recognized, and will keep your rand dependency at 0.5.5 unless you specifically request an upgrade.
+- `cargo update` helps you update and ignores Cargo.lock
+- By default however, Cargo would only try to update within the 0.5.x series. To do the 0.6.x series you have to specify it in your toml
+- Add `use rand::Rng;` to import Rng method
+- we use thread_rng, basically an rng local to the thread of execution and seeded by the OS 
+- Inclusive on lower bound but exclusive on upper bound
+- cargo doc --open will build documentation provided by all of your dependencies locally and open it in your browser if you want to know more
+- Bring in the Ordering enum with std::cmp::Ordering to compare numbers
+- Ordering has 3 variants: Less, Greater, and Equal. These are the three outcomes that are possible when you compare two values
+- The `match` expression helps determine what to do next based on which variant of Ordering was returned from the call to `cmp` with values in `guess` and `secret_number`
+- A `match expression is made up of arms. An arm consists of a pattern and the code that should be run if the value given tot he beginning of the `match` expression fits the arm's pattern. Rust takes the value given to the match and looks through each arm's pattern in return.  The match construct and patterns help you handle a variety of situations.
+- Lets say that cmp returns Ordering::Greater. The match expression gets this value and starts checking through each arm's pattern  until it finds a matching one and executes the associated code on the other side of the arrow
+- Rust has a strong static type system, but also has type inference. 
+- In `let mut guess = String::new()` rust was able to infer that guess should be a string and didn't make us write the type
+- secret_number however is a number type. Rust defaults to i32 numbers, a 32 bit number. 
+- Rust allows us to shadow variables. This lets us reuse the guess variable name for a different type of value. 
+- When reading input, a newline is added to the input when the user hits enter to confirm their input. So we have to trim it with .trim()
+- The parse method for strings parses the string into some kind of number. We have to specify we want a u32 by using `let guess: u32`. Rust can infer when we compare this to secret_number that that number should be a u32 as well
+- parse() can fail if a non number is passed in. 
+- The `:` tells rust we are going to annotate a variable's type. We do this to ensure we are getting the type we want
+- The `loop` keyword creates an infinite loop
+- You can break loops with `break`
+- Switching from expect to match can help move away from crashing on error
+- Can use _ for catchall values, for when we don't care about the info from that part
+- Can continue loops with `continue`
+- Summary: Covered `let`, `match`, associated functions, crates, etc.
