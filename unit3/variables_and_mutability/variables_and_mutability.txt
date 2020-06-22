@@ -1,0 +1,25 @@
+Variables and Mutability Notes
+
+- By default, variables in Rust are immutable. This is to help with safety and easy concurrency
+- You can opt out if you want
+- Rust guarantees that previously declared values won't change unless we specifically request them to
+- You can make variables mutable by adding mut in front of the variable name
+- For large data structures, mutability is helpful in making changes within the data structure rather than reallocating memory to create a copy of the data structure.
+- Rust has constants too, they are different than immutable variables
+- Constants are always immutable
+- Constants must be declared with  const instead of let
+- Constants can be declared in any scope, including global scope
+- Another difference is that constants must be set to a constant expression, and not that of a function call. Therefore it must be the same across multiple runs of a program.
+- The naming convention is for constants to use all uppercase with underscores between words, and underscores can be inserted into numeric literals to improve readability, like so:
+const MAX_POINTS: u32 = 100_000
+- Constants are valid for the entire time a program runs, within the scope they were declared in, making them useful for parts of the code that many sections will need to reference
+- You can declare a new variable with the same name as a previous variable, and the new variable shadows the previous variable. This is known as shadowing.
+- We say the first variable is shadowed by the second
+- We shadow by using a variable's name again and repeating the use of the let keyword
+- We can transform variables while shadowing them by using let, and then have the variable be immutable once those transformations are complete.
+- The other difference between mut and shadowing is that because we're effectively creating a new variable when we use the let keyword again, we can change the type of that value but reuse the same name. Ex:
+    let spaces = "  ";
+    let spaces = spaces.len();
+
+- We can just reuse the variable name instead of doing something like spaces_str
+- If we try this with mut we get an error because we can't mutate a variable's type
