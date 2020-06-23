@@ -1,0 +1,54 @@
+Data Types Notes
+
+- Two data types: scalar and compound
+- Rust is statically typed, so it must know all the types of each variables at compile time
+- Compiler can usually infer what type we want to use based on the value but not always, like when many types are possible or when trying to convert variables using shadowing
+- Scalar types represent a single value
+- Scalar types include integers, floating point numbers, Booleans, and characters
+- Integers usually take up 32 bits of space, but there are many integer types in Rust
+- Each variant can be signed or unsigned and has an explicit size
+- Signed and unsigned refer to whether its possible for the variable to be negative or positive
+- Signed numbers are stored using two's compliment representation
+- Each signed number can store numbers from -(2^(n-1)) to 2^(n-1) - 1, where n is the number of bits that variant uses
+- isize and usize depend on the computer architecture of the program you're running. 64 bits if you're on a 64 bit architecture and 32 bits if you're on a 32 bit architecture
+- All number literals except for byte allow for a type suffix, such as 57u8 and _ as a visual separator, like with 1_000
+- isize and usize are usually best to use when indexing some sort of colleciton
+- Integer overflow causes Rust to "panic" (exit) during run time
+- Floating point numbers (numbers with decimal points): default type is f64
+- Numeric operations: Rust supports them
+- Booleans: can be true or false. Annotated with bool 
+- Characters: Annotated with char 
+- Literals are specified with single quotes, as opposed to doubles which are specified with double quotes
+- char type is 4 bytes, and can encode more than unicode, including emojis and characters from different languages
+- Compound types: Can group multiple values into one type. Rust has two primitive compound types, tuples and arrays. 
+- Tuples: A general way of grouping together a number of values with a variety of types into one compound type. It cannot grow or shrink in size. 
+- Tuples can be created with a comma separated list of values inside parenthesis. 
+- Each position in the tuple has a type, and the types don't have to be the same.
+- Can use pattern matching to get values out of a tuple like so: 
+    let tup = (500, 6.4, 1);
+    let (x, y, z) = tup; 
+- This is called destructuring.
+- Can also access a tuple element directly using a period followed by the index of the value we want to access. Ex:
+    let x: (i32, f64, u8) = (500, 6.4, 1);
+    let five_hundred = x.0;
+    let six_point_four = x.1;
+    let one = x.2;
+- First index is 0 like with many programming languages.
+- Arrays: Every element must have the same type.
+- Arrays are a little different than in other languages because arrays have fixed lengths like tuples.
+- Values going into an array are written as a comma separated list inside brackets. Ex:
+    let a = [1, 2, 3, 4, 5];
+- Arrays are useful when you want your data allocated to the stack rather than the heap (discussed in chapter 4) or when you want to ensure you always have a fixed number of elements. 
+- A vector type is a similar collection type that is allowed to grow and shrink in size. 
+- Chapter 8 discusses vectors in more detail. They're generally more usable.
+- A good use case for Rust arrays is months of the year. This is not going to change throughout the program but is best stored within a list. 
+- You can write an array's type by using square brackets, and within the brackets include the type of each element, a semicolon,  and the number of elements in the array like so: 
+    let a: [i32; 5] = [1, 2, 3, 4, 5]
+- i32 is the type of element and 5 indicates the number of elements
+- Alternate initialization syntax; if an array contains the same value for each element, you can specify the initial value, followed by a semicolon and the length of the array in square brackets:
+    let a = [3; 5];
+- This creates an array like this: [3, 3, 3, 3, 3]
+- Accessing array elements is as simple as a[0]
+- An array is a single chunk of memory allocated on the stack. You can access array elements using indexing. 
+- Trying to access an out of bounds element in an array causes a runtime error (panicking)
+- Many low level languages do not allow you this, and instead just let the command run. Rust will instead give an error.
