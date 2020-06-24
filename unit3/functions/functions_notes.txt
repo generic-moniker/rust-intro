@@ -1,0 +1,25 @@
+Functions Notes
+
+- Rust uses snake case for function and variable names. All letters are lowercase and underscores separate words.
+- Function definitions start with fn and have a set of parenthesis after the function name. Curly brackets tell the compiler where the function body begins and ends
+- Rust doesn't care where you define your functions
+- Functions can also have parameters
+- You must declare the type of each parameter
+- Function bodies can contain statements and expressions
+- Statements are instructions that perform some action and do not return a value
+- Expressions evaluate to a resulting value
+- let y = 6 is a statement
+- Function definitions are also statements
+- 5 + 6 is an expression, calling functions, macros, etc are examples of expressions
+- {} is also an expression
+- Expressions do not include ending semicolons:
+{
+    let x = 3;
+    x + 1
+}
+- This is actually returning x + 1
+- Functions can return values
+- We don't name return values, but we declare their type with an arrow
+- You can return early from a function, but most functions return the last expression implicitly
+- Most returns seem to be done by just omitting the semicolon
+- Returning an empty value is represented by a tuple (), which is what Rust will use to tell you what might be wrong if you get a compiler error due to forgetting to return something.
