@@ -1,0 +1,6 @@
+Comments Notes
+- Pretty simple, just leave comments with '//'
+// This would be a comments
+- Can comment after code too
+let lucky_number = 7 // This would be a comment
+- Rust has another type of comment, docuemntation comments, that will be discussed later
