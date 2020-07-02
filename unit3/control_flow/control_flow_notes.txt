@@ -1,0 +1,39 @@
+Control Flow Notes
+
+- Covers stuff like if else, loops, etc
+- An if expression allows you to branch your code depending on conditions
+- All if expressions start with the keyword if, which is followed by a condition
+- Blocks of code associated with conditions in an if expressions are sometimes called arms, like with the match expression
+- Can also include an else expression
+- Condition must be a bool, no exceptions, Rust won't guess
+- Can also use else if
+- else if can clutter your code, so sometimes a match statement is a better option
+- if is an expression, and expressions evaluate to values, so we can also use it on the right side of a let statement
+Ex: let number = if condition { 5 } else { 6 }
+- The typings have to match up for this to not error out
+- Rust needs to know variable types at compile time
+- Loops: There are three kinds, loop, while, and for
+- loop goes on forever unless explicitly stopped manually or possibly with a break statement
+- can return with a break statement by placing the desired return value after it
+Ex: break counter * 2;
+- Can use while loops as a conditional loop, as in it keeps going as long as the condition evaluates to true or if a break statement comes up
+Ex: while counter > 0 {}
+- for loops can be used to loop through a collection
+Ex:
+    for element in a.iter() {
+        println!("the value is: {}", element);
+    }
+- For loops are the most common and safe type of loop, and can be used for stuff like countdowns too, using the Range library
+Ex:
+    for number in (1..4).rev() {
+        println!("{}", number);
+    }
+
+    println!("LIFTOFF!!!");
+- rev() reverses the collection order
+- x..y pattern for numbers gives a range
+- The last element is exclusive, so it only prints 3 2 1
+- To practice what you've learned so far, you could do stuff like:
+    - Building a program to convert temperatures between fahrenheit and celsius
+    - Generate the nth fibonacci number
+    - Print lyrics to 12 days of Christmas and using loops to print repetition in the song
