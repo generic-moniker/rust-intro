@@ -1,0 +1,24 @@
+Defining and Instantiating Structs
+
+- Similar to tuples in that you can store different types of data in one data structure
+- Different in that you have to name all the pieces of data so its clear what each piece represents
+- To define a struct, enter the keyword struct and name the entire struct
+- Inner component is referred to as fields
+- To use a struct after defining it, we create an instance of the struct by specifying concrete values for each of the fields
+- key: value pairs
+- Don't have to specify fields in same order they were defined
+- Can use dot notation to get a specific value out of a struct
+- Mutability is for the whole enchilada
+- Can use shorthand when builder function has same params as struct field names
+- Can create instances from other instances with struct update syntax
+- Can use tuple structs without named fields to create different types
+- Helps if you want to distinguish it from other tuples
+- Can distinguish the types of tuples
+- Otherwise can behave as a normal tuple
+- Can also define structs without fields
+- These are called unit-like structs
+- They behave similarly to (), the unit type
+- Can be useful when you need to implement a trait on some type but don't have any data that you want to store on the type itself. Traits will be discussed later.
+- Struct concepts can make you think of ownership again
+- Lifetimes help ensure that all data referenced by a struct is valid as long as the struct is valid.
+- Right now, until you learn about lifetimes, use String in structs rather than &str to avoid ownership issues.
